@@ -255,7 +255,34 @@ function typeMessage(){
   }
 }
 </script>
+<style>
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
+  /* Your custom image */
+  background: url("background.jpg") no-repeat center center/cover;
+
+  position:relative;
+  color:white;
+}
+
+/* Dark cinematic overlay */
+body::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0.4)
+  );
+  z-index:0;
+}
+</style>
 ![background jpg](https://github.com/user-attachments/assets/0878e2c1-c317-473a-b7ae-cdeb5c422438)
 ![couple png](https://github.com/user-attachments/assets/828c279d-ddca-447f-8000-7c1cf36706d5)
 
