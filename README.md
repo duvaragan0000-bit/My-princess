@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Valentine’s Day 💖 My princess</title>
+<title>Happy Valentine’s Day 💖</title>
 
 <style>
 *{
@@ -17,16 +17,14 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:url("background.jpg") no-repeat center center;
-  background-size:cover;
-  background-attachment:fixed;
+  background:url("background.jpg") no-repeat center center/cover;
   position:relative;
   overflow:hidden;
   color:white;
   text-align:center;
 }
 
-/* Romantic dark overlay */
+/* Dark romantic overlay */
 body::after{
   content:"";
   position:absolute;
@@ -40,59 +38,49 @@ body::after{
   position:relative;
   z-index:2;
   width:90%;
-  max-width:500px;
-  padding:50px 35px;
-  border-radius:30px;
+  max-width:480px;
+  padding:40px 30px;
+  border-radius:25px;
   background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(30px);
-  box-shadow:0 30px 70px rgba(0,0,0,0.7);
+  backdrop-filter:blur(25px);
+  box-shadow:0 25px 60px rgba(0,0,0,0.6);
   display:flex;
   flex-direction:column;
+  justify-content:center;
   align-items:center;
-  gap:25px;
+  gap:20px;
 }
 
 /* Title */
 .title{
-  font-size:28px;
+  font-size:26px;
   font-weight:600;
   letter-spacing:1px;
 }
 
-/* Question */
-.question{
-  font-size:18px;
+/* Subtitle */
+.subtitle{
+  font-size:16px;
+  opacity:0.9;
   line-height:1.6;
+  min-height:80px;
 }
 
-/* Buttons */
-.btn-group{
-  display:flex;
-  gap:15px;
-}
-
+/* Button */
 button{
-  padding:12px 28px;
+  padding:14px 30px;
   border:none;
   border-radius:30px;
+  background:linear-gradient(90deg,#ff4d8d,#ff1a75);
+  color:white;
   font-size:16px;
   cursor:pointer;
   transition:0.3s ease;
 }
 
-.yes{
-  background:linear-gradient(90deg,#ff4d8d,#ff1a75);
-  color:white;
-}
-
-.yes:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 25px #ff4d8d;
-}
-
-.no{
-  background:white;
-  color:#ff1a75;
+button:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 20px #ff4d8d;
 }
 
 /* Floating hearts */
@@ -105,17 +93,16 @@ button{
 
 @keyframes floatUp{
   from{transform:translateY(0) scale(1); opacity:0.7;}
-  to{transform:translateY(-110vh) scale(1.6); opacity:0;}
+  to{transform:translateY(-110vh) scale(1.5); opacity:0;}
 }
 
-/* Final Screen */
-#final{
+/* Final Glow Screen */
+#finalScreen{
   position:fixed;
   inset:0;
   display:flex;
   justify-content:center;
   align-items:center;
-  text-align:center;
   background:radial-gradient(circle, rgba(255,0,128,0.3), transparent 70%);
   font-size:40px;
   font-weight:bold;
@@ -123,10 +110,11 @@ button{
   pointer-events:none;
   transition:1.5s ease;
   z-index:5;
+  text-align:center;
   padding:20px;
 }
 
-#final.show{
+#finalScreen.show{
   opacity:1;
 }
 
@@ -136,10 +124,10 @@ button{
 
 @keyframes glowText{
   from{
-    text-shadow:0 0 15px #ff4d8d, 0 0 30px #ff4d8d;
+    text-shadow:0 0 10px #ff4d8d, 0 0 20px #ff4d8d;
   }
   to{
-    text-shadow:0 0 35px #ff99cc, 0 0 70px #ff4d8d;
+    text-shadow:0 0 30px #ff99cc, 0 0 60px #ff4d8d;
   }
 }
 </style>
@@ -150,18 +138,14 @@ button{
 <div class="card">
   <div class="title">Happy Valentine’s Day 💘 Ammu</div>
 
-  <div class="question">
-    Ammu 💞<br><br>
-    Will you be my forever love?
+  <div class="subtitle" id="message">
+    Click below to reveal something special…
   </div>
 
-  <div class="btn-group">
-    <button class="yes" onclick="acceptLove()">YES 💖</button>
-    <button class="no" onclick="moveNo(this)">NO 😢</button>
-  </div>
+  <button onclick="startLove()">Open My Heart 💖</button>
 </div>
 
-<div id="final">
+<div id="finalScreen">
   <div class="glow">
     I LOVE YOU AMMU 💖<br><br>
     Happy Valentine’s Day ❤️
@@ -169,7 +153,7 @@ button{
 </div>
 
 <script>
-/* Floating hearts */
+/* Floating hearts background */
 setInterval(()=>{
   let h=document.createElement("div");
   h.className="heart";
@@ -180,21 +164,36 @@ setInterval(()=>{
   setTimeout(()=>h.remove(),8000);
 },700);
 
-/* YES button */
-function acceptLove(){
-  document.getElementById("final").classList.add("show");
+/* Typing effect */
+const text=`Ammu 🤍
+On this beautiful Valentine’s Day,
+I just want you to know…
+You are my peace,
+my happiness,
+and my forever love. 💞`;
+
+let i=0;
+
+function startLove(){
+  document.querySelector("button").style.display="none";
+  typeText();
 }
 
-/* NO button runs away */
-function moveNo(btn){
-  btn.style.position="absolute";
-  btn.style.top=Math.random()*80+"vh";
-  btn.style.left=Math.random()*80+"vw";
+function typeText(){
+  if(i < text.length){
+    document.getElementById("message").innerHTML += text.charAt(i);
+    i++;
+    requestAnimationFrame(typeText);
+  } else {
+    setTimeout(()=>{
+      document.getElementById("finalScreen").classList.add("show");
+    },1500);
+  }
 }
 </script>
 
 </body>
-</html>
+</html>>
 
 background-size: cover;
 background-position: center;
