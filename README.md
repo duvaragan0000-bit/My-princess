@@ -296,7 +296,8 @@ body{
   justify-content:center;
   align-items:center;
 
-  /* Your custom image */
+  /* Your custom image */![background jpg](https://github.com/user-attachments/assets/fbbf56c7-2a9f-4466-9f01-8f3c5b30ed25)
+
   background: url("background.jpg") no-repeat center center/cover;
 
   position:relative;
@@ -316,4 +317,5 @@ body::after{
   z-index:0;
 }
 </style>
+![background jpg](https://github.com/user-attachments/assets/193c6af1-d394-4b5b-8373-101e0c4135ff)
 
