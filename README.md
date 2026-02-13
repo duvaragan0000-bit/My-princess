@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ammu Princess 👑</title>
 
@@ -19,28 +18,20 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background: url("background.jpg") no-repeat center center/cover;
+  background:url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1500&q=80') no-repeat center/cover;
   position:relative;
   color:white;
-  animation:fadeIn 2s ease forwards;
-  opacity:0;
 }
 
-/* Fade In */
-@keyframes fadeIn{
-  to{opacity:1;}
-}
-
-/* Dark Overlay */
+/* Dark overlay */
 body::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
-  z-index:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
 }
 
-/* Moon */
+/* 🌙 Moon */
 .moon{
   position:absolute;
   top:60px;
@@ -59,7 +50,7 @@ body::after{
   to{transform:translateY(20px);}
 }
 
-/* Stars */
+/* ✨ Stars */
 .star{
   position:absolute;
   width:2px;
@@ -74,7 +65,7 @@ body::after{
   to{opacity:1;}
 }
 
-/* Hearts */
+/* 💖 Hearts */
 .heart{
   position:absolute;
   bottom:-20px;
@@ -199,7 +190,7 @@ setInterval(()=>{
 </div>
 
 <div id="final">
-  <img src="couple.png" id="photo" alt="Couple Photo">
+  <img src="couple.png" id="photo">
   <div class="message" id="msg"></div>
 </div>
 
@@ -215,7 +206,7 @@ let questions=[
 let index=0;
 
 function next(){
-  let val=document.getElementById("answer").value.toLowerCase().trim();
+  let val=document.getElementById("answer").value.toLowerCase();
   if(val==="ammu"){
     index++;
     document.getElementById("answer").value="";
@@ -230,11 +221,9 @@ function next(){
 function showFinal(){
   document.getElementById("quiz").style.display="none";
   document.getElementById("final").style.display="block";
-
   setTimeout(()=>{
     document.getElementById("photo").classList.add("show");
   },300);
-
   setTimeout(typeMessage,800);
 }
 
@@ -251,10 +240,18 @@ function typeMessage(){
   if(i < text.length){
     document.getElementById("msg").innerHTML += text.charAt(i);
     i++;
-    setTimeout(typeMessage, 35);
+    requestAnimationFrame(typeMessage);
   }
 }
 </script>
+
+</body>
+</html>
+
+ammu-final.html
+couple.png
+background.jpg   ← (your romantic background image)
+
 <style>
 body{
   height:100vh;
@@ -283,10 +280,3 @@ body::after{
   z-index:0;
 }
 </style>
-![background jpg](https://github.com/user-attachments/assets/0878e2c1-c317-473a-b7ae-cdeb5c422438)
-![couple png](https://github.com/user-attachments/assets/828c279d-ddca-447f-8000-7c1cf36706d5)
-
-
-
-</body>
-</html>
