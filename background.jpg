@@ -1,0 +1,16 @@
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background-image: url("background.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;       /* fills entire screen */
+  background-attachment: scroll; /* important for mobile */
+
+  position:relative;
+  overflow:hidden;
+  color:white;
+}
