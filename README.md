@@ -18,7 +18,7 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:url('https://drive.google.com/file/d/10AXs3QCI9BE2D8SlYYF7v_KCdht_tVX0/view?usp=drivesdk') no-repeat center/cover;
+  background:url('https://github.com/user-attachments/assets/00d0e7e9-af32-43d2-8f61-e451b2e89c62') no-repeat center/cover;
   position:relative;
   color:white;
 }
@@ -289,3 +289,9 @@ function typeMessage(){
 
 </body>
 </html>
+
+ammu-final.html
+couple.png
+background.jpg   ← (your romantic background image)
+![background jpg](https://github.com/user-attachments/assets/00d0e7e9-af32-43d2-8f61-e451b2e89c62)
+
