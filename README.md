@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ammu Princess 👑</title>
+<title>Happy Valentine’s Day 💖 my princess</title>
 
 <style>
 *{
@@ -14,52 +14,94 @@
 
 body{
   height:100vh;
-  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:url("background.jpg") no-repeat center center;
-  background-size:cover;   /* full background view */
+  background:url("background.jpg") no-repeat center center/cover;
+  overflow:hidden;
   position:relative;
   color:white;
+  text-align:center;
 }
 
-/* Soft dark overlay */
+/* Dark overlay */
 body::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+  background:linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.45));
   z-index:0;
 }
 
-/* Moon */
-.moon{
-  position:absolute;
-  top:60px;
-  right:80px;
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:radial-gradient(circle,#fff,#ddd 40%,transparent 70%);
-  box-shadow:0 0 80px #ffffffaa;
-  animation:floatMoon 8s ease-in-out infinite alternate;
-  z-index:0;
+/* Center Card */
+.card{
+  position:relative;
+  z-index:2;
+  width:92%;
+  max-width:500px;
+  padding:50px 35px;
+  border-radius:30px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(30px);
+  box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:25px;
 }
 
-@keyframes floatMoon{
-  from{transform:translateY(0);}
-  to{transform:translateY(20px);}
+.title{
+  font-size:28px;
+  font-weight:600;
+  letter-spacing:1px;
 }
 
-/* Stars */
-.star{
+.message{
+  font-size:17px;
+  line-height:1.7;
+  min-height:120px;
+  opacity:0.95;
+}
+
+button{
+  padding:15px 35px;
+  border:none;
+  border-radius:35px;
+  background:linear-gradient(90deg,#ff4d8d,#ff0066);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 25px #ff4d8d;
+}
+
+/* Rose petals */
+.petal{
   position:absolute;
-  width:2px;
-  height:2px;
+  top:-20px;
+  font-size:20px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* Sparkles */
+.sparkle{
+  position:absolute;
+  width:3px;
+  height:3px;
   background:white;
   border-radius:50%;
-  animation:twinkle 3s infinite alternate;
+  animation:twinkle 2s infinite alternate;
 }
 
 @keyframes twinkle{
@@ -67,99 +109,45 @@ body::after{
   to{opacity:1;}
 }
 
-/* Floating hearts */
-.heart{
+/* Firework */
+.firework{
   position:absolute;
-  bottom:-20px;
-  animation:floatUp 8s linear infinite;
-  opacity:0.6;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  animation:explode 1s ease-out forwards;
 }
 
-@keyframes floatUp{
-  from{transform:translateY(0) scale(1); opacity:0.6;}
-  to{transform:translateY(-110vh) scale(1.4); opacity:0;}
+@keyframes explode{
+  to{
+    transform:translate(var(--x), var(--y));
+    opacity:0;
+  }
 }
 
-/* Glass Card */
-.card{
-  position:relative;
-  z-index:2;
-  width:90%;
-  max-width:420px;
-  padding:30px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(25px);
-  box-shadow:0 20px 50px rgba(0,0,0,0.6);
-  text-align:center;
-  transition:0.6s ease;
-}
-
-h1{ margin-bottom:20px; font-weight:500; }
-
-.question{
-  margin-bottom:20px;
-  min-height:60px;
-  font-size:18px;
-}
-
-input{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:30px;
-  outline:none;
-  background:rgba(255,255,255,0.1);
-  color:white;
-  text-align:center;
-}
-
-button{
-  margin-top:20px;
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:30px;
-  cursor:pointer;
-  background:linear-gradient(90deg,#ff4d8d,#8a2be2);
-  color:white;
-  transition:0.3s;
-}
-
-button:hover{ transform:scale(1.05); }
-
-#final{ display:none; }
-
-.message{
-  margin-top:20px;
-  min-height:120px;
-  line-height:1.6;
-  white-space:pre-line;
-}
-
-/* Proposal Finale */
-#proposal{
+/* Final Glow Screen */
+#finalScreen{
   position:fixed;
   inset:0;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:40px;
+  background:radial-gradient(circle, rgba(255,0,128,0.4), transparent 70%);
+  font-size:42px;
   font-weight:bold;
-  text-align:center;
-  background:radial-gradient(circle, rgba(255,0,128,0.3), transparent 70%);
   opacity:0;
   pointer-events:none;
-  transition:1.2s ease;
+  transition:1.5s ease;
   z-index:5;
+  padding:20px;
 }
 
-#proposal.show{
+#finalScreen.show{
   opacity:1;
 }
 
 .glow{
-  animation:glowText 2s ease-in-out infinite alternate;
+  animation:glowText 2s infinite alternate;
 }
 
 @keyframes glowText{
@@ -167,7 +155,7 @@ button:hover{ transform:scale(1.05); }
     text-shadow:0 0 10px #ff4d8d, 0 0 20px #ff4d8d;
   }
   to{
-    text-shadow:0 0 25px #ff99cc, 0 0 50px #ff4d8d;
+    text-shadow:0 0 40px #ff99cc, 0 0 80px #ff0066;
   }
 }
 </style>
@@ -175,105 +163,95 @@ button:hover{ transform:scale(1.05); }
 
 <body>
 
-<div class="moon"></div>
-<div id="proposal"><div class="glow">I LOVE YOU AMMU 💖</div></div>
+<div class="card">
+  <div class="title">Happy Valentine’s Day 💘 Ammu</div>
+  <div class="message" id="message">
+    Tap below to open my heart…
+  </div>
+  <button onclick="startLove()">Open My Heart 💖</button>
+</div>
+
+<div id="finalScreen">
+  <div class="glow">
+    I LOVE YOU AMMU 💖<br><br>
+    Forever & Always ❤️
+  </div>
+</div>
 
 <script>
-/* Stars */
-for(let i=0;i<70;i++){
+/* Sparkles background */
+for(let i=0;i<60;i++){
   let s=document.createElement("div");
-  s.className="star";
+  s.className="sparkle";
   s.style.top=Math.random()*100+"vh";
   s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=(2+Math.random()*3)+"s";
+  s.style.animationDuration=(1+Math.random()*2)+"s";
   document.body.appendChild(s);
 }
 
-/* Hearts */
+/* Rose petals */
 setInterval(()=>{
-  let h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="💖";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(12+Math.random()*20)+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),8000);
-},700);
-</script>
+  let p=document.createElement("div");
+  p.className="petal";
+  p.innerHTML="🌹";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),10000);
+},500);
 
-<div class="card" id="card">
+/* Typing */
+const text=`Ammu 🤍
+On this beautiful Valentine’s Day,
+you are my greatest blessing.
+My peace.
+My happiness.
+My forever love. 💞`;
 
-<h1>Ammu Princess 👑</h1>
+let i=0;
 
-<div id="quiz">
-  <div class="question" id="question">
-    Who is my princess? 👑
-  </div>
-  <input type="text" id="answer" placeholder="Type here...">
-  <button onclick="next()">Next 💌</button>
-</div>
+function startLove(){
+  document.querySelector("button").style.display="none";
+  typeText();
+}
 
-<div id="final">
-  <div class="message" id="msg"></div>
-</div>
-
-</div>
-
-<script>
-let questions=[
-"Who is my princess? 👑",
-"Who is my forever? 💍",
-"Who owns my heart? ❤️"
-];
-
-let index=0;
-
-function next(){
-  let val=document.getElementById("answer").value.toLowerCase();
-  if(val==="ammu"){
-    index++;
-    document.getElementById("answer").value="";
-    if(index<questions.length){
-      document.getElementById("question").innerText=questions[index];
-    }else{
-      showFinal();
-    }
+function typeText(){
+  if(i < text.length){
+    document.getElementById("message").innerHTML += text.charAt(i);
+    i++;
+    requestAnimationFrame(typeText);
+  } else {
+    setTimeout(showFinal,1500);
   }
 }
 
 function showFinal(){
-  document.getElementById("quiz").style.display="none";
-  document.getElementById("final").style.display="block";
-  setTimeout(typeMessage,600);
-}
+  document.getElementById("finalScreen").classList.add("show");
 
-const text=`Ammu Princess… 🤍
-You are my peace.
-You are my forever.
-You are my answered prayer. 🌙✨`;
-
-let i=0;
-
-function typeMessage(){
-  if(i < text.length){
-    document.getElementById("msg").innerHTML += text.charAt(i);
-    i++;
-    requestAnimationFrame(typeMessage);
-  } else {
-    setTimeout(showProposal,1200);
+  if(navigator.vibrate){
+    navigator.vibrate([200,100,200]);
   }
+
+  createFireworks();
 }
 
-function showProposal(){
-  document.getElementById("proposal").classList.add("show");
-  document.getElementById("card").style.transform="scale(0.9)";
+function createFireworks(){
+  for(let i=0;i<80;i++){
+    let f=document.createElement("div");
+    f.className="firework";
+    f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+    f.style.left="50%";
+    f.style.top="50%";
+    f.style.setProperty("--x",(Math.random()*300-150)+"px");
+    f.style.setProperty("--y",(Math.random()*300-150)+"px");
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
 }
 </script>
 
 </body>
-</html>);
-  }
-}
+</html>
 </script>
 
 </body>
@@ -283,31 +261,4 @@ background.jpg)
 
 ![background jpg](https://github.com/user-attachments/assets/718585bb-a81f-48a7-8f8c-fa35a685baaa)
 
-<style>
-body{
-  height:100vh;
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
 
-  /* Your custom image */
-  background: url("background.jpg") no-repeat center center/cover;
-
-  position:relative;
-  color:white;
-}
-
-/* Dark cinematic overlay */
-body::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,0.8),
-    rgba(0,0,0,0.4)
-  );
-  z-index:0;
-}
-</stystyl
