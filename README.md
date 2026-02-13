@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Princess 👑</title>
+<title>Ammu Princess 👑</title>
 
 <style>
 *{
@@ -18,17 +18,18 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:url("background.jpg") no-repeat center center/cover;
+  background:url("background.jpg") no-repeat center center;
+  background-size:cover;   /* full background view */
   position:relative;
   color:white;
 }
 
-/* Dark overlay */
+/* Soft dark overlay */
 body::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+  background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
   z-index:0;
 }
 
@@ -41,7 +42,7 @@ body::after{
   height:120px;
   border-radius:50%;
   background:radial-gradient(circle,#fff,#ddd 40%,transparent 70%);
-  box-shadow:0 0 60px #ffffff88;
+  box-shadow:0 0 80px #ffffffaa;
   animation:floatMoon 8s ease-in-out infinite alternate;
   z-index:0;
 }
@@ -66,7 +67,7 @@ body::after{
   to{opacity:1;}
 }
 
-/* Floating Hearts */
+/* Floating hearts */
 .heart{
   position:absolute;
   bottom:-20px;
@@ -89,14 +90,12 @@ body::after{
   border-radius:20px;
   background:rgba(255,255,255,0.08);
   backdrop-filter:blur(25px);
-  box-shadow:0 20px 50px rgba(0,0,0,0.5);
+  box-shadow:0 20px 50px rgba(0,0,0,0.6);
   text-align:center;
+  transition:0.6s ease;
 }
 
-h1{
-  margin-bottom:20px;
-  font-weight:500;
-}
+h1{ margin-bottom:20px; font-weight:500; }
 
 .question{
   margin-bottom:20px;
@@ -127,20 +126,49 @@ button{
   transition:0.3s;
 }
 
-button:hover{
-  transform:scale(1.05);
-}
+button:hover{ transform:scale(1.05); }
 
-#final{
-  display:none;
-}
+#final{ display:none; }
 
 .message{
   margin-top:20px;
-  min-height:140px;
+  min-height:120px;
   line-height:1.6;
   white-space:pre-line;
-  font-size:16px;
+}
+
+/* Proposal Finale */
+#proposal{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:40px;
+  font-weight:bold;
+  text-align:center;
+  background:radial-gradient(circle, rgba(255,0,128,0.3), transparent 70%);
+  opacity:0;
+  pointer-events:none;
+  transition:1.2s ease;
+  z-index:5;
+}
+
+#proposal.show{
+  opacity:1;
+}
+
+.glow{
+  animation:glowText 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowText{
+  from{
+    text-shadow:0 0 10px #ff4d8d, 0 0 20px #ff4d8d;
+  }
+  to{
+    text-shadow:0 0 25px #ff99cc, 0 0 50px #ff4d8d;
+  }
 }
 </style>
 </head>
@@ -148,10 +176,11 @@ button:hover{
 <body>
 
 <div class="moon"></div>
+<div id="proposal"><div class="glow">I LOVE YOU AMMU 💖</div></div>
 
 <script>
-/* Create Stars */
-for(let i=0;i<60;i++){
+/* Stars */
+for(let i=0;i<70;i++){
   let s=document.createElement("div");
   s.className="star";
   s.style.top=Math.random()*100+"vh";
@@ -160,19 +189,19 @@ for(let i=0;i<60;i++){
   document.body.appendChild(s);
 }
 
-/* Create Floating Hearts */
+/* Hearts */
 setInterval(()=>{
   let h=document.createElement("div");
   h.className="heart";
   h.innerHTML="💖";
   h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(12+Math.random()*18)+"px";
+  h.style.fontSize=(12+Math.random()*20)+"px";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),8000);
-},800);
+},700);
 </script>
 
-<div class="card">
+<div class="card" id="card">
 
 <h1>Ammu Princess 👑</h1>
 
@@ -219,11 +248,9 @@ function showFinal(){
 }
 
 const text=`Ammu Princess… 🤍
-You are the answer to every question in my life.
-Like the moon in the night sky,
-you light up my darkest days. 🌙✨
-May Allah protect our love forever.
-I love you endlessly 💖`;
+You are my peace.
+You are my forever.
+You are my answered prayer. 🌙✨`;
 
 let i=0;
 
@@ -232,6 +259,19 @@ function typeMessage(){
     document.getElementById("msg").innerHTML += text.charAt(i);
     i++;
     requestAnimationFrame(typeMessage);
+  } else {
+    setTimeout(showProposal,1200);
+  }
+}
+
+function showProposal(){
+  document.getElementById("proposal").classList.add("show");
+  document.getElementById("card").style.transform="scale(0.9)";
+}
+</script>
+
+</body>
+</html>);
   }
 }
 </script>
@@ -270,4 +310,4 @@ body::after{
   );
   z-index:0;
 }
-</style>
+</stystyl
