@@ -290,6 +290,27 @@ function showProposal(){
   document.getElementById("proposal").classList.add("show");
   document.getElementById("card").style.transform="scale(0.95)";
 }
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background-image: url("background.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;       /* fills entire screen */
+  background-attachment: scroll; /* important for mobile */
+
+  position:relative;
+  overflow:hidden;
+  color:white;
+}
+
+
+
+</body>
+</html>
 
 </script>
 ![background jpg](https://github.com/user-attachments/assets/05e8430d-f392-4707-b51a-3cc724f3dc5c)
