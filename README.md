@@ -256,8 +256,9 @@ function typeMessage(){
 }
 </script>
 
-![background](https://github.com/user-attachments/assets/d9ba3d88-ba83-4191-bdf5-bf180cd232ac)
-![couple png](https://github.com/user-attachments/assets/d4bf6953-19c3-40b4-a355-888071ca5f7b)
+![background jpg](https://github.com/user-attachments/assets/0878e2c1-c317-473a-b7ae-cdeb5c422438)
+![couple png](https://github.com/user-attachments/assets/828c279d-ddca-447f-8000-7c1cf36706d5)
+
 
 
 </body>
