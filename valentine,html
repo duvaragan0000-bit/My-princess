@@ -282,3 +282,5 @@ function typeMessage(){
   justify-content:center;
   align-items:center;
 
+
+background-image: url("images/background.jpg");
