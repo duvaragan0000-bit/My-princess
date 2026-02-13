@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Valentine 👑</title>
+<title>Ammu Princess 👑</title>
 
 <style>
 *{
@@ -147,12 +147,32 @@ button:hover{ transform:scale(1.05); }
   line-height:1.6;
   white-space:pre-line;
 }
+
+/* Music Button */
+.music-btn{
+  position:absolute;
+  bottom:20px;
+  right:20px;
+  background:rgba(255,255,255,0.2);
+  border:none;
+  padding:10px 15px;
+  border-radius:30px;
+  color:white;
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+}
 </style>
 </head>
 
 <body>
 
 <div class="moon"></div>
+
+<button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 /* Stars */
@@ -179,14 +199,14 @@ setInterval(()=>{
 
 <div class="card">
 
-<h1>Happy Valentine’s Day Ammu 👑💖</h1>
+<h1>Ammu Princess 👑</h1>
 
 <div id="quiz">
   <div class="question" id="question">
-    Who is my Valentine forever? 💌
+    Who is my princess? 👑
   </div>
   <input type="text" id="answer" placeholder="Type here...">
-  <button onclick="next()">Next 💘</button>
+  <button onclick="next()">Next 💌</button>
 </div>
 
 <div id="final">
@@ -197,17 +217,39 @@ setInterval(()=>{
 </div>
 
 <script>
+let music=document.getElementById("bgMusic");
+let playing=false;
+
+function toggleMusic(){
+  if(!playing){
+    music.volume=0;
+    music.play();
+    let fade=setInterval(()=>{
+      if(music.volume<0.9){
+        music.volume+=0.05;
+      }else{
+        clearInterval(fade);
+      }
+    },200);
+    playing=true;
+  }else{
+    music.pause();
+    playing=false;
+  }
+}
+
 let questions=[
-"Who is my Valentine forever? 💌",
-"Who owns my heart completely? ❤️",
-"Who will I love every single day? 🌹"
+"Who is my princess? 👑",
+"Who is my forever? 💍",
+"Who owns my heart? ❤️"
 ];
 
 let index=0;
 
 function next(){
-  let val=document.getElementById("answer").value.toLowerCase().trim();
-  if(val.includes("ammu")){
+  let val=document.getElementById("answer").value.toLowerCase();
+  if(val==="ammu"){
+    toggleMusic(); // start music on interaction
     index++;
     document.getElementById("answer").value="";
     if(index<questions.length){
@@ -215,8 +257,6 @@ function next(){
     }else{
       showFinal();
     }
-  }else{
-    document.getElementById("question").innerText="Hehe… think again my love 💕";
   }
 }
 
@@ -229,17 +269,12 @@ function showFinal(){
   setTimeout(typeMessage,800);
 }
 
-const text=`Happy Valentine’s Day, My Princess 💖
-
-You are my today,
-my tomorrow,
-and my forever.
-
+const text=`Ammu Princess… 🤍
+You are the answer to every question in my life.
 Like the moon in the night sky,
-you light up my darkest days 🌙✨
-
-May Allah protect our love always.
-I love you more than words can ever say 💘`;
+you light up my darkest days. 🌙✨
+May Allah protect our love forever.
+I love you endlessly 💖`;
 
 let i=0;
 
@@ -253,6 +288,41 @@ function typeMessage(){
 </script>
 
 </body>
+</html>
 
-</html><img width="251" height="448" alt="couple png" src="https://github.com/user-attachments/assets/0b669d32-8d78-4c64-bd0f-60ddea2601c4" />
+
+<style>
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  /* Your custom image */
+  background: url("background.jpg") no-repeat center center/cover;
+
+  position:relative;
+  color:white;
+}
+
+/* Dark cinematic overlay */
+body::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0.4)
+  );
+  z-index:0;
+}
+</style>
+
+ammu-final.html
+couple.png
+background.jpg   ← (your romantic background image)
+![background](https://github.com/user-attachments/assets/838df11c-e2a8-4a9c-bf14-da5428eae604)
+
 
