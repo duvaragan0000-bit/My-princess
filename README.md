@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ammu Princess 👑</title>
+<title>My Princess 👑</title>
 
 <style>
 *{
@@ -18,7 +18,7 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1500&q=80') no-repeat center/cover;
+  background:url("background.jpg") no-repeat center center/cover;
   position:relative;
   color:white;
 }
@@ -28,10 +28,11 @@ body::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+  background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+  z-index:0;
 }
 
-/* 🌙 Moon */
+/* Moon */
 .moon{
   position:absolute;
   top:60px;
@@ -50,7 +51,7 @@ body::after{
   to{transform:translateY(20px);}
 }
 
-/* ✨ Stars */
+/* Stars */
 .star{
   position:absolute;
   width:2px;
@@ -65,7 +66,7 @@ body::after{
   to{opacity:1;}
 }
 
-/* 💖 Hearts */
+/* Floating Hearts */
 .heart{
   position:absolute;
   bottom:-20px;
@@ -92,7 +93,10 @@ body::after{
   text-align:center;
 }
 
-h1{ margin-bottom:20px; font-weight:500; }
+h1{
+  margin-bottom:20px;
+  font-weight:500;
+}
 
 .question{
   margin-bottom:20px;
@@ -123,29 +127,20 @@ button{
   transition:0.3s;
 }
 
-button:hover{ transform:scale(1.05); }
-
-#final{ display:none; }
-
-#photo{
-  width:100%;
-  border-radius:15px;
-  margin-top:15px;
-  opacity:0;
-  transform:translateY(20px);
-  transition:1s ease;
+button:hover{
+  transform:scale(1.05);
 }
 
-#photo.show{
-  opacity:1;
-  transform:translateY(0);
+#final{
+  display:none;
 }
 
 .message{
-  margin-top:15px;
-  min-height:120px;
+  margin-top:20px;
+  min-height:140px;
   line-height:1.6;
   white-space:pre-line;
+  font-size:16px;
 }
 </style>
 </head>
@@ -155,7 +150,7 @@ button:hover{ transform:scale(1.05); }
 <div class="moon"></div>
 
 <script>
-/* Stars */
+/* Create Stars */
 for(let i=0;i<60;i++){
   let s=document.createElement("div");
   s.className="star";
@@ -165,7 +160,7 @@ for(let i=0;i<60;i++){
   document.body.appendChild(s);
 }
 
-/* Hearts */
+/* Create Floating Hearts */
 setInterval(()=>{
   let h=document.createElement("div");
   h.className="heart";
@@ -190,7 +185,6 @@ setInterval(()=>{
 </div>
 
 <div id="final">
-  <img src="couple.png" id="photo">
   <div class="message" id="msg"></div>
 </div>
 
@@ -221,10 +215,7 @@ function next(){
 function showFinal(){
   document.getElementById("quiz").style.display="none";
   document.getElementById("final").style.display="block";
-  setTimeout(()=>{
-    document.getElementById("photo").classList.add("show");
-  },300);
-  setTimeout(typeMessage,800);
+  setTimeout(typeMessage,600);
 }
 
 const text=`Ammu Princess… 🤍
@@ -247,10 +238,8 @@ function typeMessage(){
 
 </body>
 </html>
-
 ammu-final.html
-couple.png
-background.jpg   ← (your romantic background image)
+background.jpg)
 ![couple png](https://github.com/user-attachments/assets/93aff2bd-3692-4b35-9e15-cdb10fba0a33)
 ![background jpg](https://github.com/user-attachments/assets/718585bb-a81f-48a7-8f8c-fa35a685baaa)
 
