@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ammu Princess 👑</title>
 
@@ -18,17 +19,25 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1500&q=80') no-repeat center/cover;
+  background: url("background.jpg") no-repeat center center/cover;
   position:relative;
   color:white;
+  animation:fadeIn 2s ease forwards;
+  opacity:0;
 }
 
-/* Dark overlay */
+/* Fade In */
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+/* Dark Overlay */
 body::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+  background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+  z-index:0;
 }
 
 /* Moon */
@@ -147,32 +156,12 @@ button:hover{ transform:scale(1.05); }
   line-height:1.6;
   white-space:pre-line;
 }
-
-/* Music Button */
-.music-btn{
-  position:absolute;
-  bottom:20px;
-  right:20px;
-  background:rgba(255,255,255,0.2);
-  border:none;
-  padding:10px 15px;
-  border-radius:30px;
-  color:white;
-  cursor:pointer;
-  backdrop-filter:blur(10px);
-}
 </style>
 </head>
 
 <body>
 
 <div class="moon"></div>
-
-<button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
-
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
 
 <script>
 /* Stars */
@@ -210,34 +199,13 @@ setInterval(()=>{
 </div>
 
 <div id="final">
-  <img src="couple.png" id="photo">
+  <img src="couple.png" id="photo" alt="Couple Photo">
   <div class="message" id="msg"></div>
 </div>
 
 </div>
 
 <script>
-let music=document.getElementById("bgMusic");
-let playing=false;
-
-function toggleMusic(){
-  if(!playing){
-    music.volume=0;
-    music.play();
-    let fade=setInterval(()=>{
-      if(music.volume<0.9){
-        music.volume+=0.05;
-      }else{
-        clearInterval(fade);
-      }
-    },200);
-    playing=true;
-  }else{
-    music.pause();
-    playing=false;
-  }
-}
-
 let questions=[
 "Who is my princess? 👑",
 "Who is my forever? 💍",
@@ -247,9 +215,8 @@ let questions=[
 let index=0;
 
 function next(){
-  let val=document.getElementById("answer").value.toLowerCase();
+  let val=document.getElementById("answer").value.toLowerCase().trim();
   if(val==="ammu"){
-    toggleMusic(); // start music on interaction
     index++;
     document.getElementById("answer").value="";
     if(index<questions.length){
@@ -263,9 +230,11 @@ function next(){
 function showFinal(){
   document.getElementById("quiz").style.display="none";
   document.getElementById("final").style.display="block";
+
   setTimeout(()=>{
     document.getElementById("photo").classList.add("show");
   },300);
+
   setTimeout(typeMessage,800);
 }
 
@@ -282,47 +251,14 @@ function typeMessage(){
   if(i < text.length){
     document.getElementById("msg").innerHTML += text.charAt(i);
     i++;
-    requestAnimationFrame(typeMessage);
+    setTimeout(typeMessage, 35);
   }
 }
 </script>
 
+![background](https://github.com/user-attachments/assets/d9ba3d88-ba83-4191-bdf5-bf180cd232ac)
+![couple png](https://github.com/user-attachments/assets/d4bf6953-19c3-40b4-a355-888071ca5f7b)
+
+
 </body>
 </html>
-
-
-<style>
-body{
-  height:100vh;
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  /* Your custom image */
-  background: url("background.jpg") no-repeat center center/cover;
-
-  position:relative;
-  color:white;
-}
-
-/* Dark cinematic overlay */
-body::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,0.8),
-    rgba(0,0,0,0.4)
-  );
-  z-index:0;
-}
-</style>
-
-ammu-final.html
-couple.png
-background.jpg   ← (your romantic background image)
-![background](https://github.com/user-attachments/assets/838df11c-e2a8-4a9c-bf14-da5428eae604)
-
-
