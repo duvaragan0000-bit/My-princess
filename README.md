@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ammu Princess 👑</title>
+<title>My Valentine 👑</title>
 
 <style>
 *{
@@ -14,77 +14,99 @@
 
 body{
   height:100vh;
-  background:url("bg.jpg") center/cover no-repeat;
+  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
-  overflow:hidden;
-  color:white;
+  background:url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1500&q=80') no-repeat center/cover;
   position:relative;
+  color:white;
 }
 
 /* Dark overlay */
 body::after{
   content:"";
   position:absolute;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.55);
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+}
+
+/* Moon */
+.moon{
+  position:absolute;
+  top:60px;
+  right:80px;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff,#ddd 40%,transparent 70%);
+  box-shadow:0 0 60px #ffffff88;
+  animation:floatMoon 8s ease-in-out infinite alternate;
   z-index:0;
 }
 
-canvas{
-  position:absolute;
-  top:0;
-  left:0;
-  z-index:1;
+@keyframes floatMoon{
+  from{transform:translateY(0);}
+  to{transform:translateY(20px);}
 }
 
+/* Stars */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{opacity:0.2;}
+  to{opacity:1;}
+}
+
+/* Hearts */
+.heart{
+  position:absolute;
+  bottom:-20px;
+  animation:floatUp 8s linear infinite;
+  opacity:0.6;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0) scale(1); opacity:0.6;}
+  to{transform:translateY(-110vh) scale(1.4); opacity:0;}
+}
+
+/* Glass Card */
 .card{
   position:relative;
+  z-index:2;
   width:90%;
   max-width:420px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(15px);
-  border-radius:20px;
   padding:30px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(25px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.5);
   text-align:center;
-  z-index:2;
-  box-shadow:0 20px 60px rgba(0,0,0,0.5);
 }
 
-h1{
-  margin-bottom:20px;
-}
-
-.progress{
-  height:4px;
-  background:rgba(255,255,255,0.2);
-  border-radius:10px;
-  margin-bottom:20px;
-  overflow:hidden;
-}
-
-.bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#ff4d8d,#ffd700);
-  transition:0.4s ease;
-}
+h1{ margin-bottom:20px; font-weight:500; }
 
 .question{
-  font-size:18px;
+  margin-bottom:20px;
   min-height:60px;
+  font-size:18px;
 }
 
 input{
-  margin-top:20px;
   width:100%;
   padding:14px;
-  border-radius:30px;
   border:none;
+  border-radius:30px;
   outline:none;
-  background:rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.1);
   color:white;
   text-align:center;
 }
@@ -93,23 +115,24 @@ button{
   margin-top:20px;
   width:100%;
   padding:14px;
-  border-radius:30px;
   border:none;
+  border-radius:30px;
   cursor:pointer;
-  background:linear-gradient(90deg,#ff4d8d,#ffd700);
+  background:linear-gradient(90deg,#ff4d8d,#8a2be2);
   color:white;
+  transition:0.3s;
 }
 
-#final{
-  display:none;
-}
+button:hover{ transform:scale(1.05); }
+
+#final{ display:none; }
 
 #photo{
   width:100%;
   border-radius:15px;
   margin-top:15px;
   opacity:0;
-  transform:translateY(15px);
+  transform:translateY(20px);
   transition:1s ease;
 }
 
@@ -120,9 +143,8 @@ button{
 
 .message{
   margin-top:15px;
-  font-size:16px;
-  line-height:1.6;
   min-height:120px;
+  line-height:1.6;
   white-space:pre-line;
 }
 </style>
@@ -130,23 +152,41 @@ button{
 
 <body>
 
-<canvas id="canvas"></canvas>
+<div class="moon"></div>
+
+<script>
+/* Stars */
+for(let i=0;i<60;i++){
+  let s=document.createElement("div");
+  s.className="star";
+  s.style.top=Math.random()*100+"vh";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=(2+Math.random()*3)+"s";
+  document.body.appendChild(s);
+}
+
+/* Hearts */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(12+Math.random()*18)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},800);
+</script>
 
 <div class="card">
 
-<h1>Ammu Princess 👑💖</h1>
-
-<div class="progress">
-  <div class="bar" id="bar"></div>
-</div>
+<h1>Happy Valentine’s Day Ammu 👑💖</h1>
 
 <div id="quiz">
   <div class="question" id="question">
-    Who is my princess? 👑
+    Who is my Valentine forever? 💌
   </div>
-
   <input type="text" id="answer" placeholder="Type here...">
-  <button onclick="next()">Next 💌</button>
+  <button onclick="next()">Next 💘</button>
 </div>
 
 <div id="final">
@@ -157,99 +197,26 @@ button{
 </div>
 
 <script>
-const canvas=document.getElementById("canvas");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-/* Moon */
-let moon = {
-  x: canvas.width - 120,
-  y: 120,
-  radius: 50
-};
-
-/* Stars */
-let stars=[];
-for(let i=0;i<80;i++){
-  stars.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    size:Math.random()*2,
-    alpha:Math.random()
-  });
-}
-
-/* Hearts */
-let hearts=[];
-for(let i=0;i<25;i++){
-  hearts.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    size:Math.random()*18+10,
-    speed:Math.random()*0.5+0.2
-  });
-}
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  /* Draw moon */
-  ctx.beginPath();
-  ctx.arc(moon.x,moon.y,moon.radius,0,Math.PI*2);
-  ctx.fillStyle="rgba(255,255,200,0.8)";
-  ctx.shadowBlur=30;
-  ctx.shadowColor="rgba(255,255,200,0.8)";
-  ctx.fill();
-  ctx.shadowBlur=0;
-
-  /* Draw stars */
-  stars.forEach(s=>{
-    s.alpha += (Math.random()-0.5)*0.05;
-    if(s.alpha<0) s.alpha=0;
-    if(s.alpha>1) s.alpha=1;
-    ctx.fillStyle="rgba(255,255,255,"+s.alpha+")";
-    ctx.fillRect(s.x,s.y,s.size,s.size);
-  });
-
-  /* Draw floating hearts */
-  hearts.forEach(h=>{
-    ctx.font=h.size+"px Arial";
-    ctx.fillStyle="rgba(255,105,180,0.7)";
-    ctx.fillText("❤",h.x,h.y);
-    h.y-=h.speed;
-    if(h.y<0){
-      h.y=canvas.height;
-      h.x=Math.random()*canvas.width;
-    }
-  });
-
-  requestAnimationFrame(animate);
-}
-animate();
-
-/* Quiz + typing */
 let questions=[
-"Who is my princess? 👑",
-"Who is my forever? 💍",
-"Who owns my heart? ❤️"
+"Who is my Valentine forever? 💌",
+"Who owns my heart completely? ❤️",
+"Who will I love every single day? 🌹"
 ];
 
 let index=0;
 
 function next(){
-  let val=document.getElementById("answer").value.toLowerCase();
-
-  if(val==="ammu"){
+  let val=document.getElementById("answer").value.toLowerCase().trim();
+  if(val.includes("ammu")){
     index++;
     document.getElementById("answer").value="";
-    document.getElementById("bar").style.width=(index/3*100)+"%";
-
     if(index<questions.length){
       document.getElementById("question").innerText=questions[index];
     }else{
       showFinal();
     }
+  }else{
+    document.getElementById("question").innerText="Hehe… think again my love 💕";
   }
 }
 
@@ -262,16 +229,22 @@ function showFinal(){
   setTimeout(typeMessage,800);
 }
 
-const text=`Ammu Princess… 🤍
-You are the only answer to every question in my life.
-You are my peace, my forever, my dua written in the stars. ✨
+const text=`Happy Valentine’s Day, My Princess 💖
+
+You are my today,
+my tomorrow,
+and my forever.
+
+Like the moon in the night sky,
+you light up my darkest days 🌙✨
+
 May Allah protect our love always.
-I love you endlessly 💖`;
+I love you more than words can ever say 💘`;
 
 let i=0;
 
 function typeMessage(){
-  if(i<text.length){
+  if(i < text.length){
     document.getElementById("msg").innerHTML += text.charAt(i);
     i++;
     requestAnimationFrame(typeMessage);
@@ -280,4 +253,6 @@ function typeMessage(){
 </script>
 
 </body>
-</html>
+
+</html><img width="251" height="448" alt="couple png" src="https://github.com/user-attachments/assets/0b669d32-8d78-4c64-bd0f-60ddea2601c4" />
+
