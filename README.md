@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ammu Princess 👑</title>
+<title>Princess 👑</title>
 
 <style>
 *{
@@ -199,7 +198,7 @@ setInterval(()=>{
 
 <div class="card">
 
-<h1>Ammu Princess 👑</h1>
+<h1> Princess 👑</h1>
 
 <div id="quiz">
   <div class="question" id="question">
@@ -269,10 +268,8 @@ function showFinal(){
   setTimeout(typeMessage,800);
 }
 
-const text=`Ammu Princess… 🤍
-You are the answer to every question in my life.
-Like the moon in the night sky,
-you light up my darkest days. 🌙✨
+const text=` Princess… 🤍
+Princess nee na ennaku romba pudikum naa edthu varikum unna hurt panirutha romba sorry princess enima appdi panna mattan love you princess 🌙✨
 May Allah protect our love forever.
 I love you endlessly 💖`;
 
