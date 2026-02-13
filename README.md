@@ -251,6 +251,8 @@ function typeMessage(){
 ammu-final.html
 couple.png
 background.jpg   ← (your romantic background image)
+![couple png](https://github.com/user-attachments/assets/93aff2bd-3692-4b35-9e15-cdb10fba0a33)
+![background jpg](https://github.com/user-attachments/assets/718585bb-a81f-48a7-8f8c-fa35a685baaa)
 
 <style>
 body{
